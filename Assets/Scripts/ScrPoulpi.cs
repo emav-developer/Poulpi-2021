@@ -14,6 +14,8 @@ public class ScrPoulpi : MonoBehaviour
     const int QUANTS_MOVIMENTS = 5;
 
     [SerializeField] float elast = 1;
+    [SerializeField] GameObject explosio;
+
 
     void Start()
     {
@@ -62,6 +64,7 @@ public class ScrPoulpi : MonoBehaviour
     }
     void Destruccio() // indica com es destrueix l'objecte
     {
+        Instantiate(explosio, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 

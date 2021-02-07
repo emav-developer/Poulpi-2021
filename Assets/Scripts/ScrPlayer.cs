@@ -17,10 +17,13 @@ public class ScrPlayer : MonoBehaviour
     Transform [] canons;    // d'on surt el tretSerializeField]
 
     float cronoPowerUp = 0;
+    AudioSource so;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Damos valor a rb
+        so = GetComponent<AudioSource>();
+
     }
 
     void Update()
@@ -54,6 +57,7 @@ public class ScrPlayer : MonoBehaviour
         crono = 0;
         foreach (Transform c in canons)
             if (c.gameObject.activeSelf) Instantiate(missil, c.position, c.rotation);
+        so.Play();
 
     }
 
