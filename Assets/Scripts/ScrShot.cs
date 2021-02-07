@@ -15,5 +15,9 @@ public class ScrShot : MonoBehaviour
     {
         transform.Translate(vel * Time.deltaTime, 0, 0);
     }
+    void Destruccio() // indica com es destrueix l'objecte
+    {
+        Destroy(gameObject);
+    }
 
 }
