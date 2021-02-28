@@ -21,9 +21,13 @@ public class ScrCollision : MonoBehaviour
     [SerializeField]
     float vitality = 2f;
 
+    [SerializeField] AudioClip tocat, enfonsat; // Inicialitzem en cada prefab
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print(transform.name + " vs " + collision.name); // per testejar col·lisions detectades
+        bool impacte = false;
+  
+        // print(transform.name + " vs " + collision.name); // per testejar col·lisions detectades
         ScrDamage scrD = collision.GetComponent<ScrDamage>(); // intentem llegir script ScrDamage    
 
         if (scrD)   // si en té, és un objecte que treu vida. Calculem
@@ -32,16 +36,29 @@ public class ScrCollision : MonoBehaviour
             //NOTA: NO INTENTAR SIMPLIFICAR LA SEGÜENT CONDICIÓ, PERQUÈ MÉS ENDAVANT ENS FARÀ FALTA AIXÍ
 
             if (tag == "Player" && scrD.damagePlayer > 0)   // soc el player i l'objecte em treu vida
+            {
                 vitality -= scrD.damagePlayer;
+                impacte = true;
+            }
             else if (tag != "Player" && scrD.damageNPC > 0)
+            {
                 vitality -= scrD.damageNPC; // soc un NPC i l'objecte em treu vida
+                impacte = true;
+                print(name);
+            }
 
 
             // si la col·lisió és amb una projectil, el destruim (busca funció Destruccio en els script associats)
-            if (collision.tag == "shot") collision.SendMessage("Destruccio", SendMessageOptions.DontRequireReceiver);
+            if (collision.tag == "shot" && impacte) collision.SendMessage("Destruccio", SendMessageOptions.DontRequireReceiver);
 
             // si no em queda vida, m'autodestrueixo 
             if (vitality <= 0) SendMessage("Destruccio", SendMessageOptions.DontRequireReceiver);
+            if (impacte)
+            {
+                if (vitality <= 0 && enfonsat) AudioSource.PlayClipAtPoint(enfonsat, Camera.main.transform.position);
+                if (vitality >0 && tocat) AudioSource.PlayClipAtPoint(tocat, Camera.main.transform.position);
+            }
+            
         }
     }
 }

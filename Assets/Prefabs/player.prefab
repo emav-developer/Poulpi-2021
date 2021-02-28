@@ -198,6 +198,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vitality: 4
+  tocat: {fileID: 8300000, guid: 2c8c576725621c04ca3c31a95c8d0434, type: 3}
+  enfonsat: {fileID: 8300000, guid: 0e58f9cc11b19624aaa5dc599e280fa6, type: 3}
 --- !u!114 &3627422957938993969
 MonoBehaviour:
   m_ObjectHideFlags: 0

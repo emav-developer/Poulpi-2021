@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &972414483558843511
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2061670628575409323}
+  m_Layer: 0
+  m_Name: cano
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2061670628575409323
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972414483558843511}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.8, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5964744953300140533}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7502082744058491503
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,7 +63,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.4107761, y: -12.660468, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2061670628575409323}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -151,6 +182,11 @@ MonoBehaviour:
   tipusMoviment: 1
   elast: 1
   explosio: {fileID: 100004, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
+  cano: {fileID: 2061670628575409323}
+  projectil: {fileID: 6866412624934394780, guid: 69d9141bf8e9d9647a13bf224390a022,
+    type: 3}
+  cadenciaMin: 1
+  cadenciaMax: 3
 --- !u!114 &6116443780255035491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,6 +214,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vitality: 2
+  tocat: {fileID: 8300000, guid: 3f12b8c998f42134e98be79e012009c1, type: 3}
+  enfonsat: {fileID: 8300000, guid: a821cf6e7d7eeed45af27b9df063986a, type: 3}
 --- !u!82 &8881390260533884829
 AudioSource:
   m_ObjectHideFlags: 0

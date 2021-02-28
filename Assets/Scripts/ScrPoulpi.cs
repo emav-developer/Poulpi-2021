@@ -16,13 +16,36 @@ public class ScrPoulpi : MonoBehaviour
     [SerializeField] float elast = 1;
     [SerializeField] GameObject explosio;
 
+    // ************************* Shoting **************************
+    [SerializeField] Transform cano;
+    [SerializeField] Transform projectil;
+    [SerializeField] float cadenciaMin = 1, cadenciaMax = 3; // tiempo entre disparos
+    float crono;
+
+    Renderer r;
+    Collider2D col;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        r = GetComponent<Renderer>();
+        col = GetComponent<Collider2D>();
+        col.enabled = false;
+
         desfase = Random.Range(0, 360);
         player = GameObject.FindGameObjectWithTag("Player");
         if (tipusMoviment == 0) tipusMoviment = Random.Range(1, QUANTS_MOVIMENTS + 1);
+        crono = Random.Range(cadenciaMin, cadenciaMax); // Preparem primer tret
+    }
+    void Update()
+    {
+        // if (r.isVisible)
+        if (ScrControlGame.EsVisibleDesde(r,Camera.main))
+        {
+            crono -= Time.deltaTime;
+            if (crono <= 0) Dispara();
+            col.enabled = true;
+        }
     }
 
     void FixedUpdate()
@@ -30,6 +53,14 @@ public class ScrPoulpi : MonoBehaviour
         CalculaMoviment(tipusMoviment);
         rb.velocity = moviment;
     }
+
+    void Dispara()
+    {
+        Transform b = Instantiate(projectil, cano.position, cano.rotation);
+        b.Rotate(0, 0, Random.Range(-10, 10)); // modifiquem trajectoria aleatoriament
+        crono = Random.Range(cadenciaMin, cadenciaMax); // Sigüent tret
+    }
+
 
     void CalculaMoviment(int tipus)
     {
@@ -56,7 +87,7 @@ public class ScrPoulpi : MonoBehaviour
             case 5:  // perseguint al player
                 if (player) moviment.y = (player.transform.position.y - transform.position.y) / elast;
           
-                moviment.x = 0;
+                moviment.x = velX;
                 break;
 
 
@@ -68,5 +99,9 @@ public class ScrPoulpi : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private void OnBecameVisible()
+    {
+        print("Hola, soc" + name);
+    }
 
 }

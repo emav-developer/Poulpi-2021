@@ -9,7 +9,7 @@ public class ScrShot : MonoBehaviour
 
     void Start()
     {
-        Destroy(gameObject, 3); // per si no col·lisiona amb res
+        Destroy(gameObject, 5); // per si no col·lisiona amb res
     }
     void Update()
     {
