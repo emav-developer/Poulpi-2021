@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 8015021947059898553}
   - component: {fileID: 1267454539160105963}
   - component: {fileID: 6116443780255035491}
+  - component: {fileID: 1746237322763150101}
   - component: {fileID: 1797652009290856195}
   - component: {fileID: 8881390260533884829}
   m_Layer: 0
@@ -182,11 +183,6 @@ MonoBehaviour:
   tipusMoviment: 1
   elast: 1
   explosio: {fileID: 100004, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
-  cano: {fileID: 2061670628575409323}
-  projectil: {fileID: 6866412624934394780, guid: 69d9141bf8e9d9647a13bf224390a022,
-    type: 3}
-  cadenciaMin: 1
-  cadenciaMax: 3
 --- !u!114 &6116443780255035491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +197,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageNPC: 0
   damagePlayer: 3
+--- !u!114 &1746237322763150101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7502082744058491503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc3214e115ed728488e1c08746c85c19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cano: {fileID: 2061670628575409323}
+  projectil: {fileID: 6866412624934394780, guid: 69d9141bf8e9d9647a13bf224390a022,
+    type: 3}
+  cadenciaMin: 1
+  cadenciaMax: 3
+  render: {fileID: 4311245633260417232}
+  rotar: 1
+  atacant: 1
 --- !u!114 &1797652009290856195
 MonoBehaviour:
   m_ObjectHideFlags: 0

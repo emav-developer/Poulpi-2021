@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScrPoulpi : MonoBehaviour
+public class ScrPoulpi1 : MonoBehaviour
 {
     [SerializeField] float velX = -5f;
     Vector2 moviment = new Vector2();
@@ -16,7 +16,11 @@ public class ScrPoulpi : MonoBehaviour
     [SerializeField] float elast = 1;
     [SerializeField] GameObject explosio;
 
-
+    // ************************* Shoting **************************
+    [SerializeField] Transform cano;
+    [SerializeField] Transform projectil;
+    [SerializeField] float cadenciaMin = 1, cadenciaMax = 3; // tiempo entre disparos
+    float crono;
 
     Renderer r;
     Collider2D col;
@@ -31,12 +35,15 @@ public class ScrPoulpi : MonoBehaviour
         desfase = Random.Range(0, 360);
         player = GameObject.FindGameObjectWithTag("Player");
         if (tipusMoviment == 0) tipusMoviment = Random.Range(1, QUANTS_MOVIMENTS + 1);
+        crono = Random.Range(cadenciaMin, cadenciaMax); // Preparem primer tret
     }
     void Update()
     {
         // if (r.isVisible)
         if (ScrControlGame.EsVisibleDesde(r,Camera.main))
         {
+            crono -= Time.deltaTime;
+            if (crono <= 0) Dispara();
             col.enabled = true;
         }
     }
@@ -45,6 +52,13 @@ public class ScrPoulpi : MonoBehaviour
     {
         CalculaMoviment(tipusMoviment);
         rb.velocity = moviment;
+    }
+
+    void Dispara()
+    {
+        Transform b = Instantiate(projectil, cano.position, cano.rotation);
+        b.Rotate(0, 0, Random.Range(-10, 10)); // modifiquem trajectoria aleatoriament
+        crono = Random.Range(cadenciaMin, cadenciaMax); // Sigüent tret
     }
 
 
@@ -84,4 +98,10 @@ public class ScrPoulpi : MonoBehaviour
         Instantiate(explosio, transform.position, transform.rotation);
         Destroy(gameObject);
     }
+
+    private void OnBecameVisible()
+    {
+        print("Hola, soc" + name);
+    }
+
 }

@@ -44,7 +44,7 @@ public class ScrCollision : MonoBehaviour
             {
                 vitality -= scrD.damageNPC; // soc un NPC i l'objecte em treu vida
                 impacte = true;
-                print(name);
+
             }
 
 
