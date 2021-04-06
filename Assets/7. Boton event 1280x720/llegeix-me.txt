@@ -1,0 +1,1 @@
+A partir de l’escena inicial, fer que quan el ratolí passi per sobre de cada botó, es mostri una de les naus. Quan pitgem un botó, que els altres dos desapareguin, es quedi fixada la nau seleccionada i s’activi el botó START.

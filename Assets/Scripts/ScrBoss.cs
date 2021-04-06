@@ -19,10 +19,6 @@ public class ScrBoss : MonoBehaviour
         detectaPlayer = Physics2D.OverlapCircle(transform.position, radiDeteccio, filtreCapes);
         if (detectaPlayer) moviment = false;
     }
-
-
-
-
     void Start()
     {
         col = GetComponent<Collider2D>();
