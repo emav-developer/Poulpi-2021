@@ -4,46 +4,47 @@ using UnityEngine.UI;
 
 public class ScrCorazones : MonoBehaviour {
 
-public int numVidas = 5;
-public Image[] corazones;   // array con los corazones que crearemos
-public Image prCorazon;
+const int VIDES_INICIALS = 5;
+[SerializeField] int numVides = VIDES_INICIALS;
+Image[] cors;   // array amb els cors que crearem
+[SerializeField] Image prefabCor;     // apunta al prefab del cor
 
 void Start()
     {
-        corazones = new Image[numVidas];
-        DibujaCorazones(numVidas);
-        // CambiaCorazon(1, false);
+        cors = new Image[numVides];  // inicialitzem array
+        DibuixaCors(VIDES_INICIALS);        // Dibuixem els 5 cors
     }
 void Update()
     {
-        if (Input.GetKeyDown(KeyCode.KeypadMinus))
+        if (Input.GetKeyDown(KeyCode.KeypadMinus))  // Amb tecla - disminuim vides
         {
-            if (numVidas > 0) numVidas--;
-            CambiaCorazon(numVidas, false);
+            if (numVides > 0) numVides--;
+            EstableixCor(numVides, false);
         }
-        if (Input.GetKeyDown(KeyCode.KeypadPlus))
+        if (Input.GetKeyDown(KeyCode.KeypadPlus))   // Amb tecla + augmentem vides
         {
-            if (numVidas < 5) numVidas++;
-            CambiaCorazon(numVidas-1, true);
+            if (numVides < VIDES_INICIALS) numVides++;
+            EstableixCor(numVides-1, true);
         }
     }
 
-
-    void DibujaCorazones(int num)
+    // Funció que pinta els nombre de cors inicials
+    void DibuixaCors(int num)
     {
-        // Para averiguar el ancho accedemos a sizeDelta.x
-        float ancho = prCorazon.rectTransform.sizeDelta.x;
+        // Per saber l'amplada de cada prefab, i calcular el desplaçament
+        float ample = prefabCor.rectTransform.sizeDelta.x;
 
         for (int i = 0; i < num; i++)
         {
-        corazones[i] = Instantiate(prCorazon);
-        corazones[i].transform.SetParent(this.transform, false); // this hace referencia al Canvas
-        corazones[i].transform.Translate(ancho * i, 0, 0);
+        cors[i] = Instantiate(prefabCor);                   // instanciem
+        cors[i].transform.SetParent(this.transform, false); // fem fill del canvas mantenin posició
+        cors[i].transform.Translate(ample * i, 0, 0);       // desplacem a la dreta
         }
     }
 
-void CambiaCorazon(int num, bool estat)
+    //Funció que encén/apaga un cor
+    void EstableixCor(int num, bool estat)
     {
-        corazones[num].gameObject.SetActive(estat);
+        cors[num].gameObject.SetActive(estat);
     }
 }

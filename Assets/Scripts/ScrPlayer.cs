@@ -28,8 +28,20 @@ public class ScrPlayer : MonoBehaviour
 
     void Update()
     {
+        print(transform.position);
         movi.x = ETCInput.GetAxis("Horizontal") * velocitat;
         movi.y = ETCInput.GetAxis("Vertical") * velocitat;
+        //***** Restricció de movimint *************
+        float left = .1f, right = .8f, top = 0.9f, bottom = 0.1f;
+
+
+        // Calculem coordinades de la nau al VIEWPORT
+        Vector3 posi = Camera.main.WorldToViewportPoint(transform.position);
+        if (posi.x < left && movi.x < 0) movi.x = 0;
+        if (posi.x > right && movi.x > 0) movi.x = 0;
+        if (posi.y < bottom && movi.y < 0) movi.y = 0;
+        if (posi.y > top && movi.y > 0) movi.y = 0;
+
 
         if (ETCInput.GetButton("Shoot") && crono > cadencia) // Shoot: nom del control
             Dispara();
@@ -45,6 +57,7 @@ public class ScrPlayer : MonoBehaviour
         }
         if (cronoPowerUp > 0) cronoPowerUp -= Time.deltaTime; else SetTripleShot(false);
 
+        
 
     }
 
